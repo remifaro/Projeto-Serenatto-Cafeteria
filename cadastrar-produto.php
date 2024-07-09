@@ -70,7 +70,7 @@ if(isset($_POST['cadastro'])){
             <label for="imagem">Envie uma imagem do produto</label>
             <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem">
 
-            <input name="cadastro" type="submit" name="cadastro" class="botao-cadastrar" value="Cadastrar produto"/>
+            <input name="cadastro" type="submit" class="botao-cadastrar" value="Cadastrar produto"/>
         </form>
     
     </section>

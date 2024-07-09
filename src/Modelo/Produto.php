@@ -6,8 +6,8 @@ class Produto
     private string $tipo;
     private string $nome;
     private string $descricao;
-    private string $imagem; 
     private float $preco;
+    private string $imagem; 
 
     public function __construct(?int $id, string $tipo, string $nome, string $descricao, float $preco, string $imagem = "logo-serenatto.png")
     {
@@ -15,8 +15,8 @@ class Produto
         $this->tipo=$tipo;
         $this->nome=$nome;
         $this->descricao=$descricao;
-        $this->imagem=$imagem;
         $this->preco=$preco;
+        $this->imagem=$imagem;
     }
 
     public function getId(): int
