@@ -8,6 +8,12 @@ $produtoRepositorio = new ProdutoRepositorio($pdo);
 
 if (isset($_POST['editar'])) {
   $produto = new Produto($_POST['id'], $_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_POST['preco']);
+
+  if ($_FILES['imagem']['error'] == UPLOAD_ERR_OK) {
+    $produto->setImagem(uniqid() . $_FILES['imagem']['name']);
+    move_uploaded_file($_FILES['imagem']['tmp_name'], $produto->getImagemDiretorio());
+  }
+
   $produtoRepositorio->atualizar($produto);
   header("Location:admin.php");
 } else {
@@ -45,7 +51,7 @@ if (isset($_POST['editar'])) {
       <img class="ornaments" src="img/ornaments-coffee.png" alt="ornaments">
     </section>
     <section class="container-form">
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
 
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto"
@@ -68,11 +74,11 @@ if (isset($_POST['editar'])) {
 
         <label for="preco">Preço</label>
         <input type="text" id="preco" name="preco" placeholder="Digite uma descrição"
-          value="<?= number_format($produto->getPreco(), 2)?>" required>
+          value="<?= number_format($produto->getPreco(), 2) ?>" required>
 
         <label for="imagem">Envie uma imagem do produto</label>
         <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem">
-          <input type="hidden" name="id" value="<?= $produto->getId() ?>">
+        <input type="hidden" name="id" value="<?= $produto->getId() ?>">
         <input type="submit" name="editar" class="botao-cadastrar" value="Editar produto" />
       </form>
 
